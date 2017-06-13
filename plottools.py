@@ -1,7 +1,7 @@
 import numpy as np
 import pylab as plt
 from math import sqrt
-from . import gradients as gg
+from . import core as gg
 
 def example_all():
     """

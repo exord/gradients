@@ -1,7 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python -i
 import pylab as plt
 
-import gradients
 from gradients.plottools import *
 
 def example_all():
@@ -21,4 +20,4 @@ def example_all():
 
 if __name__ == '__main__':
     example_all()
-
+    raw_input()
