@@ -1,2 +1,1 @@
-from core import *
-import plottools
+from .core import *
