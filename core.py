@@ -8,17 +8,18 @@ def multinormal_pdf(mean, cov, x):
     :param array-like cov: (n,n) covariance matrix.
     :param array-like x: (l, n) coordinates where the gradient is evaluated. 
     """
+    x, mean = map(np.array, (x, mean))
     r = x - mean
 
     # Compute determinant of covariance (use slogdet, more robust)
     det = np.exp(np.linalg.slogdet(cov)[1])
-    
+
     # Compute cov^-1 x r, but use solve (more robust too!)
     alpha = np.linalg.solve(cov, r.T)
     beta = np.exp(-0.5 * np.sum(r.T * alpha, axis=0))
 
     return 1 / np.sqrt((2*np.pi)**len(mean) * det) * beta
-    
+
 def gradient_normal(mean, cov, x):
     """
     Compute the gradient of a (multi)normal distribution in m coordinates.
@@ -27,6 +28,7 @@ def gradient_normal(mean, cov, x):
     :param array-like cov: (n,n) covariance matrix.
     :param array-like x: (l, n) coordinates where the gradient is evaluated. 
     """
+    x, mean = map(np.array, (x, mean))
     r = x - mean
 
     # Solve C.x = b, where b is the coordinate with respect to the mean 
@@ -42,6 +44,7 @@ def gradient_lognormal(mean, cov, x):
     :param array-like cov: (n,n) covariance matrix.
     :param array-like x: (l, n) coordinates where the gradient is evaluated. 
     """
+    x, mean = map(np.array, (x, mean))
     r = x - mean
     return -np.linalg.solve(cov, r.T) 
 
